@@ -47,6 +47,9 @@ services:
   newman:
     image: postman/newman
     container_name: newman
+    build:
+      context: .
+      dockerfile: docker/newman/newman.dockerfile
     network_mode: host
     entrypoint: newman
     depends_on:
