@@ -1,0 +1,59 @@
+services:
+  lnd-eventstore-db:
+    networks:
+      - local
+    container_name: lnd-eventstore-db
+    image: lnd-eventstore-db
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    build:
+      context: docker/eventstore-db/
+      dockerfile: eventstore-db.dockerfile
+    volumes:
+      - ./:/app/postgres
+    healthcheck:
+        test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "postgres" ]
+        interval: 2s
+        timeout: 30s
+        retries: 5
+        start_period: 1s
+
+  lnd-readmodel-api:
+    container_name: lnd-readmodel-api
+    image: lnd-readmodel-api
+    networks:
+      local:
+        aliases:
+          - localhost
+    build:
+      context: .
+      dockerfile: docker/lnd-readmodel-api/lnd-readmodel-api.dockerfile
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+      lnd-eventstore-db:
+        condition: service_healthy
+    environment:
+      - EVENTSOURCE_DB_URL=jdbc:postgresql://lnd-eventstore-db:5432/postgres?user=postgres&password=password
+      - QUERY_PORT=8080
+    working_dir: /app/bin
+    command:
+      - ./app
+
+  newman:
+    image: postman/newman
+    container_name: newman
+    network_mode: host
+    entrypoint: newman
+    depends_on:
+      - lnd-readmodel-api
+    command: run https://api.postman.com/collections/20805028-285cdb20-5214-4d43-91d1-3517a3277ef3?access_key=PMAT-01H4AGHHXE6ZEQK1EJYENMW2D2 -k -r cli
+    volumes:
+      - ./tests:/etc/newman
+
+networks:
+  local:
