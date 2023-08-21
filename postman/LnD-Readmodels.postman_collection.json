@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "6aa42d59-f574-4ae8-92f4-6b2cfd2a5af8",
+		"name": "LnD Readmodels",
+		"description": "Tests for the lnd-eventsource-readmodels repository.\n\nValidates that the readmodel has been constructed correctly.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Highest Point Scorers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d9f4f51-e77e-430c-bd50-f5b8ab229e65",
+						"exec": [
+							"pm.test(\"Status code is 200-Ok\", function () { pm.response.to.have.status(200); });",
+							"pm.test(\"Payload as expected\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].playerHandle).to.eql(\"Brad Thorn\");",
+							"    pm.expect(jsonData[0].points).to.eql(30);",
+							"    ",
+							"    pm.expect(jsonData[1].playerHandle).to.eql(\"John Matrix\");",
+							"    pm.expect(jsonData[1].points).to.eql(20);",
+							"    ",
+							"    pm.expect(jsonData[2].playerHandle).to.eql(\"Dutch\");",
+							"    pm.expect(jsonData[2].points).to.eql(17);",
+							"    ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/game/leaderboards/points",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"leaderboards",
+						"points"
+					]
+				},
+				"description": "List the top 5 players by points accrued and the sum of the points accrued."
+			},
+			"response": []
+		},
+		{
+			"name": "Most Common Opponents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebbb912a-8d16-4f08-849c-87a9a8c613ba",
+						"exec": [
+							"pm.test(\"Status code is 200-Ok\", function () { pm.response.to.have.status(200); });",
+							"pm.test(\"Payload as expected\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].playerHandle1).to.eql(\"Brad Thorn\");",
+							"    pm.expect(jsonData[0].playerHandle2).to.eql(\"Carl Hayman\");",
+							"    pm.expect(jsonData[0].matches).to.eql(3);",
+							"    ",
+							"    pm.expect(jsonData[1].playerHandle1).to.eql(\"Beethoven\");",
+							"    pm.expect(jsonData[1].playerHandle2).to.eql(\"Chopin\");",
+							"    pm.expect(jsonData[1].matches).to.eql(2);",
+							"    ",
+							"    pm.expect(jsonData[2].playerHandle1).to.eql(\"Belle\");",
+							"    pm.expect(jsonData[2].playerHandle2).to.eql(\"Daisy\");",
+							"    pm.expect(jsonData[2].matches).to.eql(2);",
+							"    ",
+							"    pm.expect(jsonData[3].playerHandle1).to.eql(\"John Matrix\");",
+							"    pm.expect(jsonData[3].playerHandle2).to.eql(\"Ben Richards\");",
+							"    pm.expect(jsonData[3].matches).to.eql(2);",
+							"    ",
+							"    pm.expect(jsonData[4].playerHandle1).to.eql(\"Ariel\");",
+							"    pm.expect(jsonData[4].playerHandle2).to.eql(\"Cinderella\");",
+							"    pm.expect(jsonData[4].matches).to.eql(2);",
+							"    ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/game/leaderboards/opponents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"leaderboards",
+						"opponents"
+					]
+				},
+				"description": "Order list of players who most commonly play against each other."
+			},
+			"response": []
+		},
+		{
+			"name": "Game start delays",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b2cb282-fee1-4b59-9e1e-1e52d94394b6",
+						"exec": [
+							"pm.test(\"Status code is 200-Ok\", function () { pm.response.to.have.status(200); });",
+							"pm.test(\"Payload as expected\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[0].name).to.eql(\"Noongar\");",
+							"    pm.expect(jsonData[0].delay).to.eql(\"PT9H15M\");",
+							"    ",
+							"    pm.expect(jsonData[1].name).to.eql(\"Whanau\");",
+							"    pm.expect(jsonData[1].delay).to.eql(\"PT9H15M\");",
+							"    ",
+							"    pm.expect(jsonData[2].name).to.eql(\"Arnie classic\");",
+							"    pm.expect(jsonData[2].delay).to.eql(\"PT9H10M\");",
+							"    ",
+							"    pm.expect(jsonData[3].name).to.eql(\"Princess party\");",
+							"    pm.expect(jsonData[3].delay).to.eql(\"PT9H5M\");",
+							"    ",
+							"    pm.expect(jsonData[4].name).to.eql(\"Opening Stanza\");",
+							"    pm.expect(jsonData[4].delay).to.eql(\"PT9H\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"equals": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/game/startDelays",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"startDelays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Game start mean average",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1f1d4b8-de16-4526-84ca-f70834994ccd",
+						"exec": [
+							"pm.test(\"Status code is 200-Ok\", function () { pm.response.to.have.status(200); });",
+							"pm.test(\"Payload as expected\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.meanDelayDuration).to.eql(\"PT9H5M37.5S\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/game/startDelayMean",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"startDelayMean"
+					]
+				},
+				"description": "Get the mean average time for a game to move from Created to Started state"
+			},
+			"response": []
+		}
+	]
+}
