@@ -51,7 +51,7 @@ services:
     entrypoint: newman
     depends_on:
       - lnd-readmodel-api
-    command: run https://api.postman.com/collections/20805028-285cdb20-5214-4d43-91d1-3517a3277ef3?access_key=PMAT-01H4AGHHXE6ZEQK1EJYENMW2D2 -k -r cli
+    command: run https://api.postman.com/collections/-- -k -r cli
     volumes:
       - ./tests:/etc/newman
 
