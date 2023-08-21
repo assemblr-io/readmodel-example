@@ -51,7 +51,8 @@ services:
     entrypoint: newman
     depends_on:
       - lnd-readmodel-api
-    command: run https://api.postman.com/collections/-- -k -r cli
+    working_dir: /postman
+    command: run LnD-Readmodels.postman_collection.json -k -r cli
     volumes:
       - ./tests:/etc/newman
 
