@@ -45,15 +45,15 @@ services:
       - ./app
 
   newman:
-    image: postman/newman
-    container_name: newman
-    build:
-      context: .
-      dockerfile: docker/newman/newman.dockerfile
+    image: postman/newman_readmodel
+    container_name: newman_readmodel
     network_mode: host
-    entrypoint: newman
     depends_on:
       - lnd-readmodel-api
+    build:
+      context: .
+      dockerfile: docker/newman/postman-newman.dockerfile
+    entrypoint: newman
     working_dir: /postman
     command: run LnD-Readmodels.postman_collection.json -k -r cli
     volumes:
