@@ -68,11 +68,17 @@ Note that this eventsource is postgres but you can set this to some other instan
 If you are using a Salesforce macOS laptop, you will need to set your java up.  Follow these steps:
 
 1. Install Homebrew if you haven't already.  Open a terminal and paste in this command:
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-2. Tap the available cask versions available:
-`brew tap homebrew/cask-versions
-3. Install JDK17 (not the latest = 22... compatability issues!) using:
-`brew install --cask homebrew/cask-versions/zulu17`
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+3. Tap the available cask versions available:
+```bash
+brew tap homebrew/cask-versions
+```
+5. Install JDK17 (not the latest = 22... compatability issues!) using:
+```bash
+brew install --cask homebrew/cask-versions/zulu17
+```
    
 ### Docker
 
