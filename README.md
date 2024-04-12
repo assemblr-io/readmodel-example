@@ -63,6 +63,17 @@ If you are going to run and build the distribution within IntelliJ then setup lo
 
 Note that this eventsource is postgres but you can set this to some other instance if needed.
 
+## Salesforce & Java
+
+If you are using a Salesforce macOS laptop, you will need to set your java up.  Follow these steps:
+
+1. Install Homebrew if you haven't already.  Open a terminal and paste in this command:
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+2. Tap the available cask versions available:
+`brew tap homebrew/cask-versions
+3. Install JDK17 (not the latest = 22... compatability issues!) using:
+`brew install --cask homebrew/cask-versions/zulu17`
+   
 ### Docker
 
 The eventstore is a PostgreSQL instance running in a docker container.
