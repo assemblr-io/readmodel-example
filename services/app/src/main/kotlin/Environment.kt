@@ -1,3 +1,5 @@
+package chandler
+
 object Environment {
     val port = getIntEnvironmentVar("QUERY_PORT")
     val dbConnectionString = getStringEnvironmentVar("EVENTSOURCE_DB_URL")

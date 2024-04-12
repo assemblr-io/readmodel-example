@@ -45,7 +45,7 @@ services:
       - ./app
 
   newman:
-    image: postman/newman_readmodel
+    image: postman/newman
     container_name: newman_readmodel
     network_mode: host
     depends_on:

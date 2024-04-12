@@ -5,8 +5,8 @@ import http.GameHandler
 import infrastructure.EventBus
 import infrastructure.ReadStore
 import infrastructure.Repository
-import Environment.dbConnectionString
-import Environment.port
+import chandler.Environment.dbConnectionString
+import chandler.Environment.port
 import java.sql.DriverManager
 
 fun main(){

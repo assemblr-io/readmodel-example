@@ -57,6 +57,12 @@ An initial load is satisfactory for this exercise.
 
 ## Prerequisites
 
+If you are going to run and build the distribution within IntelliJ then setup local ENVIRONMENT variables of:
+* QUERY_PORT=8080
+* EVENTSOURCE_DB_URL=jdbc:postgresql://lnd-eventstore-db:5432/postgres?user=postgres&password=password
+
+Note that this eventsource is postgres but you can set this to some other instance if needed.
+
 ### Docker
 
 The eventstore is a PostgreSQL instance running in a docker container.
